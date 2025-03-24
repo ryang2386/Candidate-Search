@@ -118,3 +118,18 @@ tbody tr:nth-child(odd) {
   width: 80vw;
   table-layout: fixed;
 }
+
+body ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin-block-start: 0;
+}
+
+#root {
+  width: 100%;
+}
+
+body li {
+  padding: 5px;
+}

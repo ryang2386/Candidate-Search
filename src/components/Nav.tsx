@@ -9,13 +9,10 @@ const Nav = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/" className={location === '/' ? 'active' : ''}></Link>
+            <Link to="/" className={location === '/' ? 'active' : ''}>Home</Link>
           </li>
           <li>
-            <Link to="/candidatesearch" className={location === '/candidatesearch' ? 'active' : ''}>Candidate Search</Link>
-          </li>
-          <li>
-            <Link to="/potentialcandidates" className={location === '/potentialcandidates' ? 'active' : ''}>Potential Candidates</Link>
+            <Link to="/savedcandidates" className={location === '/savedcandidates' ? 'active' : ''}>Potential Candidates</Link>
           </li>
         </ul>
       </nav>
