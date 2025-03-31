@@ -168,3 +168,9 @@ section {
 h2, p {
   padding-left: 10px;
 }
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

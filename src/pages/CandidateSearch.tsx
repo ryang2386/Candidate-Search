@@ -1,6 +1,8 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { searchGithubUser } from '../api/API';
 import { useNavigate } from 'react-router-dom';
+import { CgAddR } from "react-icons/cg";
+import { CgRemoveR } from "react-icons/cg";
 
 const CandidateSearch = () => {
 
@@ -89,8 +91,10 @@ return (
           <p>URL: {currentCandidate.html_url}</p>
           {currentCandidate.company ? (<p>Company: {currentCandidate.company}</p>) : null}
         </section>
-        <button onClick={addToCandidatesList}>Add</button>
-        <button onClick={removeFromCandidatesList}>Remove</button>
+        <section className="button">
+          <CgAddR onClick={addToCandidatesList} style={{ fontSize: '50px', cursor: 'pointer' }}>Add</CgAddR>
+          <CgRemoveR onClick={removeFromCandidatesList} style={{ fontSize: '47px', cursor: 'pointer' }}>Remove</CgRemoveR>
+        </section>
       </div>
       ) : null }
       </>
