@@ -174,3 +174,23 @@ h2, p {
   flex-direction: row;
   justify-content: space-between;
 }
+
+table, tr, td, th {
+  border: 2px solid gray;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+table {
+  width: fit-content;
+  border-radius: 25px;
+}
+
+th {
+  background: linear-gradient(
+    180deg,
+    rgb(23, 23, 184) 0%,
+    rgb(53, 53, 177) 15%,
+    rgb(94, 97, 123) 100%
+  );
+}

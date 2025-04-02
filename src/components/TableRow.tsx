@@ -1,8 +1,6 @@
-// import { useState } from 'react';
+import { CgRemoveR } from "react-icons/cg";
 
 function TableRow({ login, name, location, avatar_url, email, html_url, company, removeCandidate }: Candidate & { removeCandidate: () => void }) {
-
-    // const [newCandidatesList, setNewCandidatesList] = useState<Candidate[]>([]);
 
     const handleRemove = () => {
         const storedCandidates = localStorage.getItem('candidates');
@@ -30,7 +28,7 @@ function TableRow({ login, name, location, avatar_url, email, html_url, company,
         <td><a href={`mailto:${email}`}>{email}</a></td>
         <td>{company}</td>
         <td>
-            <button onClick={handleRemove}>Reject</button>
+        <CgRemoveR onClick={handleRemove} style={{ fontSize: '47px', cursor: 'pointer' }}>Reject</CgRemoveR>
         </td>
         </tr>
     );
