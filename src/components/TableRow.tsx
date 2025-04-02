@@ -1,4 +1,19 @@
-function TableRow({ login, name, location, avatar_url, email, html_url, company }: Candidate) {
+// import { useState } from 'react';
+
+function TableRow({ login, name, location, avatar_url, email, html_url, company, removeCandidate }: Candidate & { removeCandidate: () => void }) {
+
+    // const [newCandidatesList, setNewCandidatesList] = useState<Candidate[]>([]);
+
+    const handleRemove = () => {
+        const storedCandidates = localStorage.getItem('candidates');
+        let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
+
+        const updatedCandidatesList = candidatesList.filter((candidate: Candidate) => candidate.login !== login);
+        console.log('updatedCandidatesList', updatedCandidatesList);
+        localStorage.setItem('candidates', JSON.stringify(updatedCandidatesList));
+        removeCandidate();
+    };
+
     return (
         <tr>
         <td>
@@ -15,7 +30,7 @@ function TableRow({ login, name, location, avatar_url, email, html_url, company 
         <td><a href={`mailto:${email}`}>{email}</a></td>
         <td>{company}</td>
         <td>
-            <button onClick={() => {}}>Reject</button>
+            <button onClick={handleRemove}>Reject</button>
         </td>
         </tr>
     );
