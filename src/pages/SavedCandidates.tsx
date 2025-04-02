@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TableRow from "../components/TableRow";
 // import { useNavigate } from "react-router-dom";
 // import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 // import { AgGridReact } from 'ag-grid-react';
@@ -6,22 +7,31 @@ import { useState, useEffect } from "react";
 
 const SavedCandidates = () => {
 
-  const [candidate, setCandidate] = useState<Candidate>({
-    login: '',
-    name: '',
-    location: '',
-    avatar_url: '',
-    email: '',
-    html_url: '',
-    company: ''
-  });
+  // const [candidate, setCandidate] = useState<Candidate>({
+  //   login: '',
+  //   name: '',
+  //   location: '',
+  //   avatar_url: '',
+  //   email: '',
+  //   html_url: '',
+  //   company: ''
+  // });
 
+  const [candidatesList, setCandidatesList] = useState<Candidate[]>([]);
+  const [noCandidatesMessage, setNoCandidatesMessage] = useState<string>('');
+  
   useEffect(() => {
     const storedCandidates = localStorage.getItem('candidates');
-    let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
-    console.log('candidatesList', candidatesList);
-    setCandidate(candidatesList[0]);
-  }, []);
+    let storedCandidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
+    setCandidatesList(storedCandidatesList);
+  });
+
+  // useEffect(() => {
+  //   const storedCandidates = localStorage.getItem('candidates');
+  //   let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
+  //   console.log('candidatesList', candidatesList);
+  //   setCandidate(candidatesList[0]);
+  // }, []);
 
   return (
       <>
@@ -36,7 +46,21 @@ const SavedCandidates = () => {
               <th>Company</th>
               <th>Reject</th>
             </tr>
-            <tr>
+              {
+                candidatesList.map((candidate, index) => (
+                  <TableRow
+                    key={index}
+                    login={candidate.login}
+                    name={candidate.name}
+                    location={candidate.location}
+                    avatar_url={candidate.avatar_url}
+                    email={candidate.email}
+                    html_url={candidate.html_url}
+                    company={candidate.company}
+                  />
+                )
+              )}
+            {/* <tr>
               <td><a href={candidate.html_url}><img src={candidate.avatar_url} alt="avatar" style={{ height: '50px', width: '50px' }} /></a></td>
               <td>{candidate.name}
                 <br />
@@ -48,7 +72,7 @@ const SavedCandidates = () => {
               <td>
                 <button onClick={() => {}}>Reject</button>
               </td>
-            </tr>
+            </tr> */}
           </table>
         </div>
       </>
