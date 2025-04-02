@@ -1,21 +1,7 @@
 import { useState, useEffect } from "react";
 import TableRow from "../components/TableRow";
-// import { useNavigate } from "react-router-dom";
-// import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
-// import { AgGridReact } from 'ag-grid-react';
-// import 'ag-grid-community/styles/ag-grid.css';
 
 const SavedCandidates = () => {
-
-  // const [candidate, setCandidate] = useState<Candidate>({
-  //   login: '',
-  //   name: '',
-  //   location: '',
-  //   avatar_url: '',
-  //   email: '',
-  //   html_url: '',
-  //   company: ''
-  // });
 
   const [candidatesList, setCandidatesList] = useState<Candidate[]>([]);
   const [noCandidatesMessage, setNoCandidatesMessage] = useState<string>('');
@@ -23,19 +9,19 @@ const SavedCandidates = () => {
   useEffect(() => {
     const storedCandidates = localStorage.getItem('candidates');
     let storedCandidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
-    setCandidatesList(storedCandidatesList);
-  });
-
-  // useEffect(() => {
-  //   const storedCandidates = localStorage.getItem('candidates');
-  //   let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
-  //   console.log('candidatesList', candidatesList);
-  //   setCandidate(candidatesList[0]);
-  // }, []);
+    
+    if (storedCandidatesList.length === 0) {
+      setNoCandidatesMessage('No candidates found. Please search for candidates.');
+    } else {
+      setCandidatesList(storedCandidatesList);
+      setNoCandidatesMessage('');
+    }
+  }, []);
 
   return (
       <>
           <h1>Potential Candidates</h1>
+      {noCandidatesMessage ? (<p>{noCandidatesMessage}</p>) : candidatesList.length > 0 ? (
         <div>
           <table>
             <tr>
@@ -59,22 +45,11 @@ const SavedCandidates = () => {
                     company={candidate.company}
                   />
                 )
-              )}
-            {/* <tr>
-              <td><a href={candidate.html_url}><img src={candidate.avatar_url} alt="avatar" style={{ height: '50px', width: '50px' }} /></a></td>
-              <td>{candidate.name}
-                <br />
-                ({candidate.login})
-              </td>
-              <td>{candidate.location}</td>
-              <td><a href={`mailto:${candidate.email}`}>{candidate.email}</a></td>
-              <td>{candidate.company}</td>
-              <td>
-                <button onClick={() => {}}>Reject</button>
-              </td>
-            </tr> */}
+                )
+              }
           </table>
-        </div>
+        </div>                  
+              ) : null }
       </>
   );
 };
