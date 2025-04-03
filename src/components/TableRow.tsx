@@ -1,17 +1,21 @@
 import { CgRemoveR } from "react-icons/cg";
 
+// Function to create a table row for each candidate
 function TableRow({ login, name, location, avatar_url, email, html_url, company, removeCandidate }: Candidate & { removeCandidate: () => void }) {
-
+    
+    // Function used to remove a candidate from the list
     const handleRemove = () => {
+        // gets candidates from local storage and stores them in an array
         const storedCandidates = localStorage.getItem('candidates');
         let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
-
+        // removes candidate from local storage/list
         const updatedCandidatesList = candidatesList.filter((candidate: Candidate) => candidate.login !== login);
-        console.log('updatedCandidatesList', updatedCandidatesList);
+        // updates local storage after removal and calls removeCandidate function 
+        // to render the new list in SavedCandidates
         localStorage.setItem('candidates', JSON.stringify(updatedCandidatesList));
         removeCandidate();
     };
-
+    // returns table row with candidate information and a remove button
     return (
         <tr>
         <td>

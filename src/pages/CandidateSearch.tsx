@@ -5,55 +5,68 @@ import { CgAddR } from "react-icons/cg";
 import { CgRemoveR } from "react-icons/cg";
 
 const CandidateSearch = () => {
-
+  // sets the state for the candidate object
   const [currentCandidate, setCurrentCandidate] = useState<Candidate>({ login: '', name: '', location: '', avatar_url: '', email: '', html_url: '', company: '' });
-
+  // sets the state for the input field
   const [searchInput, setSearchInput] = useState<string>('');
+  // sets the state for the message when no candidates are found
   const [noCandidatesMessage, setNoCandidatesMessage] = useState<string>('');
-
+  // used to redirect to the home page when last candidate is removed from 
+  // local storage/list
   const navigate = useNavigate();
-
+  
+  // function to add candidate to the list
   const addToCandidatesList = () => {
+    // gets candidates from local storage and stores them in an array
     const storedCandidates = localStorage.getItem('candidates');
     let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
 
+    // if current candidate exists, add to local storage/list
     if (currentCandidate.login) {  
-      // console.log('currentCandidate', currentCandidate);  
       candidatesList.push(currentCandidate);
-    localStorage.setItem('candidates', JSON.stringify(candidatesList));
+      localStorage.setItem('candidates', JSON.stringify(candidatesList));
+    // message to display after candidate is added
     setNoCandidatesMessage('Candidate added to the list. Please search for another.');
     }
   };
 
+// function to remove candidate from the list  
 const removeFromCandidatesList = () => {
   const storedCandidates = localStorage.getItem('candidates');
     let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
   
-  
+  // if current candidate exists, remove from list
   if (currentCandidate.login) {  
-    // if last candidate is removed from local storage, default back to home page
+    
     candidatesList.shift();
-    // console.log('currentCandidate', currentCandidate);
+
+    // if there are no candidates in local storage, reset the candidate state
+    // and redirect to the home page
     if (candidatesList.length === 0) {
       localStorage.removeItem('candidates');
       setCurrentCandidate({ login: '', name: '', location: '', avatar_url: '', email: '', html_url: '', company: '' });
       navigate('/');
     } else {
+      // update local storage with the new list of candidates
+      // and set the current candidate to the first candidate in the list
       localStorage.setItem('candidates', JSON.stringify(candidatesList));
       setCurrentCandidate(candidatesList[0]);
     }
     }
 };
 
+// function to search for candidates by username
 const searchForCandidates = async (event: FormEvent, username: string) => {
   event.preventDefault();
   try {
+  // checks to see if username exists, if so, update current candidate state
   const candidate: Candidate = await searchGithubUser(username);
   if (candidate && candidate.login) {
-    console.log('Candidate:', candidate);
+    
     setCurrentCandidate(candidate);
     setNoCandidatesMessage('');
   } else {
+    // if candidate does not exist, set the no candidates message
     setNoCandidatesMessage('No candidate found with that username.');
   }
   } catch (error) {
@@ -61,6 +74,8 @@ const searchForCandidates = async (event: FormEvent, username: string) => {
   }
 };
 
+// using useEffect to check if there are any candidates in local storage
+// if so, set the current candidate state to the first candidate in the list
 useEffect(() => {
   const storedCandidates = localStorage.getItem('candidates');
   if (storedCandidates) {
@@ -71,15 +86,19 @@ useEffect(() => {
   }
 }, []);
 
+// returns the HTML to render on the Candidate Search page
 return (
     <>
       <div>
         <h1>Candidate Search</h1>
+        {/* form submit button that handles event for search and call the searchForCandidates function */}
         <form onSubmit={(event: FormEvent) => searchForCandidates(event, searchInput)}>
           <input type='text' name='' placeholder='Enter Candidate Username' onChange={(event) => setSearchInput(event.target.value)} />
           <button type='submit'>Search</button>
         </form>
       </div>
+      {/* if noCandidatesMessage is set, display the message
+      if not, display the candidate information */}
       {noCandidatesMessage ? (<p>{noCandidatesMessage}</p>) : currentCandidate.login ? (
       <div>
         <section className="candidateCard">
@@ -92,6 +111,8 @@ return (
           {currentCandidate.company ? (<p>Company: {currentCandidate.company}</p>) : null}
         </section>
         <section className="button">
+          {/* buttons to handle actions for adding and removing candidates from localStorage
+          and the list */}
           <CgAddR onClick={addToCandidatesList} style={{ fontSize: '50px', cursor: 'pointer' }}>Add</CgAddR>
           <CgRemoveR onClick={removeFromCandidatesList} style={{ fontSize: '47px', cursor: 'pointer' }}>Remove</CgRemoveR>
         </section>
