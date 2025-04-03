@@ -1,33 +1,43 @@
-# React + TypeScript + Vite
+# Candidate Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+[Description](#Description)
 
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
+[Installation](#Installation)
 
-## Expanding the ESLint configuration
+[Usage](#Usage)
 
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+[Contribution](#Contribution)
 
-* Configure the top-level `parserOptions` property as follows:
+[Tests](#Tests)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+[License](#License)
 
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
+[Questions](#Questions)
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Description
+The purpose of this project is to search GitHub users by their username, and once the search produces a GitHub user, you have the option to either add the user to your candidate list or remove the user and search again. Also, you have the option to remove candidates from your list on the Potential Candidates page. Overall, this app could be used by companies to store candidates for their job openings.
+
+ ## Installation
+First, enter the correct directory by typing "cd -directory name-" in your terminal. Afterwards, type "npm install" to install all the necessary packages for this app. Once that step is done, type "npm run build" to build the app, and for the final step, type "npm run dev" to deploy the app and access it on your local host.
+
+ ## Usage
+The usage of this project is to help companies store potential candidates for their job openings. For a demonstration of how the app works, please view the video here:
+
+ ## Contribution
+ First, thank you to Columbia University Bootcamp for providing me with the starter code needed to complete this app. Secondly, anyone who wants to contribute to this project are free to do so. If you have any suggestions, fork the repo and create a pull request. Also, please give this project a star! I'd truly appreciate it!
+
+ ## Tests
+ All tests have been conducted. If you'd like to see the app in action, please check the Usage section for the video. Also, you're free to add new features and test the app on your local host.
+
+## License
+ None.
+
+ ## Questions
+ GitHub: ryang2386 - https://github.com/ryang2386
+
+ Email: gayler02@nyu.edu
+
+ I can be contacted at any time between 4 pm - 11 pm on Tuesdays and Fridays, and 4 pm - 6:30 pm on Mondays, Wednesdays, and Thursdays. On the weekend, please allow me 24 hours to respond to all inquiries. I look forward to your questions, feedback, and critiques!
