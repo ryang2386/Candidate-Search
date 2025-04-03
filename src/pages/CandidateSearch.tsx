@@ -11,6 +11,7 @@ const CandidateSearch = () => {
   const [searchInput, setSearchInput] = useState<string>('');
   // sets the state for the message when no candidates are found
   const [noCandidatesMessage, setNoCandidatesMessage] = useState<string>('');
+  const [CandidateExistMessage, setCandidateExistMessage] = useState<string>('');
   // used to redirect to the home page when last candidate is removed from 
   // local storage/list
   const navigate = useNavigate();
@@ -22,9 +23,15 @@ const CandidateSearch = () => {
     let candidatesList: Candidate[] = storedCandidates ? JSON.parse(storedCandidates) : [];
 
     // if current candidate exists, add to local storage/list
-    if (currentCandidate.login) {  
+    const candidateExists = candidatesList.some((candidate: Candidate) => candidate.login === currentCandidate.login);
+    if (candidateExists) {
+      // if candidate already exists, set the message to display
+      setCandidateExistMessage('Candidate already exists in the list.');
+    } else {
+      // if candidate does not exist, add to local storage/list
       candidatesList.push(currentCandidate);
       localStorage.setItem('candidates', JSON.stringify(candidatesList));
+      setCandidateExistMessage('');
     // message to display after candidate is added
     setNoCandidatesMessage('Candidate added to the list. Please search for another.');
     }
@@ -58,6 +65,8 @@ const removeFromCandidatesList = () => {
 // function to search for candidates by username
 const searchForCandidates = async (event: FormEvent, username: string) => {
   event.preventDefault();
+  // resets candidate exist message to an empty string
+  setCandidateExistMessage('');
   try {
   // checks to see if username exists, if so, update current candidate state
   const candidate: Candidate = await searchGithubUser(username);
@@ -110,11 +119,13 @@ return (
           <p>URL: {currentCandidate.html_url}</p>
           {currentCandidate.company ? (<p>Company: {currentCandidate.company}</p>) : null}
         </section>
+          {CandidateExistMessage ? (<p>{CandidateExistMessage}</p>) : null} 
         <section className="button">
           {/* buttons to handle actions for adding and removing candidates from localStorage
           and the list */}
           <CgAddR onClick={addToCandidatesList} style={{ fontSize: '50px', cursor: 'pointer' }}>Add</CgAddR>
           <CgRemoveR onClick={removeFromCandidatesList} style={{ fontSize: '47px', cursor: 'pointer' }}>Remove</CgRemoveR>
+
         </section>
       </div>
       ) : null }
