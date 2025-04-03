@@ -26,6 +26,9 @@ First, enter the correct directory by typing "cd -directory name-" in your termi
 
 ## Usage
 The usage of this project is to help companies store potential candidates for their job openings. For a demonstration of how the app works, please view the video here: https://github.com/user-attachments/assets/197a529a-ea75-44c5-8947-21a0d0308f4a
+![Screenshot 2025-04-03 182802](https://github.com/user-attachments/assets/01256d0c-eaea-4808-8042-9ae7ccce628a)
+![Screenshot 2025-04-03 182904](https://github.com/user-attachments/assets/2200d81d-476d-41ef-b5dc-d32e892b09c7)
+
 
 ## Contribution
 First, thank you to Columbia University Bootcamp for providing me with the starter code needed to complete this app. Secondly, anyone who wants to contribute to this project are free to do so. If you have any suggestions, fork the repo and create a pull request. Also, please give this project a star! I'd truly appreciate it!
