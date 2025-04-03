@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/197a529a-ea75-44c5-8947-21a0d0308f4a
 # Candidate Search
 
 ## Table of Contents
@@ -26,7 +25,7 @@ The purpose of this project is to search GitHub users by their username, and onc
 First, enter the correct directory by typing "cd -directory name-" in your terminal. Afterwards, type "npm install" to install all the necessary packages for this app. Once that step is done, type "npm run build" to build the app, and for the final step, type "npm run dev" to deploy the app and access it on your local host.
 
 ## Usage
-The usage of this project is to help companies store potential candidates for their job openings. For a demonstration of how the app works, please view the video here: Uploading Screen Recording 2025-04-03 175151.mp4…
+The usage of this project is to help companies store potential candidates for their job openings. For a demonstration of how the app works, please view the video here: https://github.com/user-attachments/assets/197a529a-ea75-44c5-8947-21a0d0308f4a
 
 ## Contribution
 First, thank you to Columbia University Bootcamp for providing me with the starter code needed to complete this app. Secondly, anyone who wants to contribute to this project are free to do so. If you have any suggestions, fork the repo and create a pull request. Also, please give this project a star! I'd truly appreciate it!
